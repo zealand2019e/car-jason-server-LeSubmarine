@@ -10,10 +10,15 @@ namespace CarJsonClient
         static void Main(string[] args)
         {
             Console.ReadLine();
-            EchoClient.EchoClient echoClient = new EchoClient.EchoClient();
-            Car newCar = ConsoleInquiries.GetCarObj();
-            string jsonCar = JsonConvert.SerializeObject(newCar);
-            echoClient.Write(jsonCar);
+            using (EchoClient.EchoClient echoClient = new EchoClient.EchoClient())
+            {
+                while (true)
+                {
+                    Car newCar = ConsoleInquiries.GetCarObj();
+                    string jsonCar = JsonConvert.SerializeObject(newCar);
+                    echoClient.Write(jsonCar);
+                }
+            }
         }
     }
 }
