@@ -53,8 +53,63 @@ namespace EchoServer
                     {
                         Console.WriteLine("received message: " + message);
                         //sw.WriteLine(message.ToUpper());
-                        Car carObjMessage = ConvertJsonToCar(message);
-                        Console.WriteLine(carObjMessage.ToString());
+                        
+                        //Car carObjMessage = ConvertJsonToCar(message);
+                        //Console.WriteLine(carObjMessage.ToString());
+                        if (message == "Start")
+                        {
+                            message = sr.ReadLine();
+                            Console.WriteLine("received message: " + message);
+                            switch (message.Split(" ")[0])
+                            {
+                                case "Car":
+                                {
+                                    Car carObj = new Car();
+                                    bool run = true;
+                                    while (run)
+                                    {
+                                        message = sr.ReadLine();
+                                        Console.WriteLine("received message: " + message);
+                                        switch (message.Split(" ")[0])
+                                        {
+                                            case "Color:":
+                                            {
+                                                carObj.Color = message.Split(" ")[1];
+                                                break;
+                                            }
+                                            case "Model:":
+                                            {
+                                                carObj.Model = message.Split(" ")[1];
+                                                break;
+                                            }
+                                            case "RegNr:":
+                                            {
+                                                carObj.RegNr = message.Split(" ")[1];
+                                                break;
+                                            }
+                                            case "Stop":
+                                            {
+                                                run = false;
+                                                break;
+                                            }
+                                            default:
+                                            {
+                                                break;
+                                            }
+                                        }
+                                    }
+
+                                    Console.WriteLine("Car obj received:" + carObj.ToString());
+                                    break;
+                                }
+                                default:
+                                {
+                                    break;
+                                }
+
+                            }
+                        }
+
                         emptyMessages = 0;
                     }
                     else
