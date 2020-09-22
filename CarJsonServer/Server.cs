@@ -54,7 +54,10 @@ namespace EchoServer
                         Console.WriteLine("received message: " + message);
                         //sw.WriteLine(message.ToUpper());
                         Car carObjMessage = ConvertJsonToCar(message);
-                        Console.WriteLine(carObjMessage.ToString());
+                        //Console.WriteLine(carObjMessage);
+                        Console.WriteLine(carObjMessage.RegNr);
+                        Console.WriteLine(carObjMessage.Model);
+                        Console.WriteLine(carObjMessage.Color);
                         emptyMessages = 0;
                     }
                     else
